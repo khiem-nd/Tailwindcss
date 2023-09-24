@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-commerce Website</title>
+    <link rel="stylesheet" href="../output.css" />
+    <script src="./EconmmerceWebsite.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <nav class="2xl:container 2xl:mx-auto md:py-5 lg:px-20 md:px-6 p-4 fixed bg-gray-100 w-screen">
+        <div class="flex items-center justify-between">
+            <div class="lg:w-3/12">
+                <div class="w-52 hidden lg:flex items-center space-x-3 border-b border-gray-200 pb-2">
+                    <div class="w-5">
+                        <ion-icon name="search" class="text-xl"></ion-icon>
+                        <img class="w-5 dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg1dark.svg" alt="Search">
+                    </div>
+                    <input type="text" placeholder="Search for products" class="bg-transparent text-sm text-gray-600 focus:outline-none" />
+                </div>
+                <button onclick="openMenu()" aria-label="Open Menu" class="text-gray-800 dark:text-white hidden md:block lg:hidden focus:outline-none focus:ring-2 focus:ring-gray-800 rounded">
+                    <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg2.svg" alt="toggler">
+                    <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg2dark.svg" alt="toggler">
+                </button>
+                <button onclick="openSearchMenu()" aria-label="Search Menu" class="text-gray-800 dark:text-white md:hidden focus:outline-none focus:ring-2 focus:ring-gray-800 rounded hover:bg-gray-100 p-0.5">
+                    <img class="w-5 dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg1.svg" alt="Search">
+                        <img class="w-5 dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg1dark.svg" alt="Search">
+                </button>
+            </div>
+            <div class="lg:w-6/12 flex flex-col justify-center items-center space-y-3.5">
+                <div aria-label="Luxiwood. Logo" role="img" class="cursor-pointer flex">
+                  <ion-icon name="home-outline" class="items-center text-2xl"></ion-icon>
+                  <h1 class="items-center ml-2 font-semibold text-xl">FURNATURE</h1>
+                </div>
+                <div class="hidden lg:block">
+                    <ul class="flex items-center space-x-10">
+                        <li>
+                            <a href="javascript:void(0)" class="dark:text-white dark:hover:text-gray-300 text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Home</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="dark:text-white dark:hover:text-gray-300 text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Catalog</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="dark:text-white dark:hover:text-gray-300 text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Top Sell</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="dark:text-white dark:hover:text-gray-300 text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Specifications</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="dark:text-white dark:hover:text-gray-300 text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Contact us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="lg:w-3/12 flex justify-end items-center space-x-4">
+
+                <!-- Modal Login Button -->
+                <a class="focus:outline-none text-gray-800 focus:ring-2 focus:ring-gray-800 rounded hover:bg-gray-300 p-0.5" href="javascript:void(0)"><ion-icon name="log-in" class="text-2xl" onclick="modalHandlerLogin()"></ion-icon></a>
+                <a class="focus:outline-none text-gray-800 focus:ring-2 focus:ring-gray-800 rounded hover:bg-gray-300 p-0.5" href="javascript:void(0)"><ion-icon name="cart" class="text-2xl" onclick="modalHandlerCart()"></ion-icon></a>
+               
+                <button onclick="openSmMenu()" aria-label="open menu" class="text-gray-800 dark:text-white md:hidden focus:outline-none focus:ring-2 focus:ring-gray-800 rounded hover:bg-gray-100 p-0.5">
+                    <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg2.svg" alt="toggler">
+                    <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg2dark.svg" alt="toggler">
+                </button>
+            </div>
+        </div>
+    
+        <div id="md-menu" class="hidden lg:hidden absolute z-10 inset-0 h-screen w-full dark:bg-gray-800 bg-gray-800 bg-opacity-70 dark:bg-opacity-70">
+            <div class="relative w-full h-screen">
+                <div class="absolute inset-0 w-1/2 bg-white dark:bg-gray-900 p-6 justify-center">
+                    <div class="flex items-center justify-between border-b pb-4 border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center space-x-3 mx-2">
+                            <div>
+                                <img class="w-5 dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg1.svg" alt="Search">
+                                <img class="w-5 dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg1dark.svg" alt="Search">
+                            </div>
+                            <input type="text" placeholder="Search for products" class="text-sm text-gray-600 dark:text-gray-300 focus:outline-none bg-transparent" />
+                        </div>
+                        <button onclick="closeMenu()" aria-label="close menu" class="focus:outline-none focus:ring-2 focus:ring-gray-800">
+                            <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg6.svg" alt="close">
+                            <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg6dark.svg" alt="close">
+                        </button>
+                    </div>
+                    <div class="mt-8">
+                        <ul class="flex flex-col space-y-8">
+                            <li class="flex items-center justify-between">
+                                <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Home</a>
+                                
+                            </li>
+                            <li class="flex items-center justify-between">
+                                <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Catalog</a>
+                               
+                            </li>
+                            <li class="flex items-center justify-between">
+                                <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Top Sell</a>
+                               
+                            </li>
+                            <li class="flex items-center justify-between">
+                                <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Blog</a>
+                               
+                            </li>
+                            <li class="flex items-center justify-between">
+                                <a href="javascript:void(0)" class="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Contact us</a>
+                              
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Search menu -->
+        <div id="mobile-search-menu" class="hidden md:hidden absolute inset-0 z-10 flex-col w-full h-screen bg-white dark:bg-gray-900 pt-4">
+            <div class="w-full">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-3 mx-4">
+                    <div class="flex items-center space-x-3 mx-2">
+                        <div>
+                            <img class="w-5 dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg1.svg" alt="Search">
+                            <img class="w-5 dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg1dark.svg" alt="Search">
+                        </div>
+                        <input type="text" placeholder="Search for products" class="text-sm text-gray-600 focus:outline-none bg-transparent" />
+                    </div>
+    
+                    <button aria-label="close menu" onclick="closeSearchMenu()" class="text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800">
+                        <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg6.svg" alt="close">
+                        <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg6dark.svg" alt="close">
+                    </button>
+                </div>
+            </div>
+            <div class="mt-8 mx-4">
+                <h2 class="text-sm text-gray-600 dark:text-gray-300 uppercase">Suggestions</h2>
+                <ul class="mt-6 flex flex-col space-y-6">
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-sm text-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Bags</a>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-sm text-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Shoes</a>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-sm text-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Capes</a>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-sm text-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Coats</a>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-sm text-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Denim 2021</a>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-sm text-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Leather shoe collection 2021</a>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-sm text-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Active wear</a>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-sm text-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">Sweat suits</a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    
+        <!-- Main Menu -->
+    
+        <div id="mobile-menu" class="hidden md:hidden absolute inset-0 z-10 flex-col w-full h-screen bg-white pt-4">
+            <div class="w-full">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-4 mx-4">
+                    <div></div>
+                    <div><p class="text-base font-semibold text-gray-800">Menu</p></div>
+                    <button aria-label="close menu" onclick="closeSmMenu()" class="text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800">
+                        <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg6.svg" alt="close">
+                        <img class="dark:block hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-VI-svg6dark.svg" alt="close">
+                    </button>
+                </div>
+            </div>
+            <div class="mt-6 mx-4">
+                <ul class="flex flex-col space-y-8">
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-base text-gray-800 focus:outline-none dark:text-white focus:ring-2 focus:ring-gray-800 hover:underline">Home</a>
+                        
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-base text-gray-800 focus:outline-none dark:text-white focus:ring-2 focus:ring-gray-800 hover:underline">Catalog</a>
+                        
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-base text-gray-800 focus:outline-none dark:text-white focus:ring-2 focus:ring-gray-800 hover:underline">Top Sell</a>
+                        
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-base text-gray-800 focus:outline-none dark:text-white focus:ring-2 focus:ring-gray-800 hover:underline">Blog</a>
+                        
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <a href="javascript:void(0)" class="text-base text-gray-800 focus:outline-none dark:text-white focus:ring-2 focus:ring-gray-800 hover:underline">Contact us</a>
+                        
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+      </nav>
+
+    <main class="bg-[url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] h-screen bg-cover bg-no-repeat bg-fixed">
+      <div class="container mx-auto flex flex-col items-center py-12 pt-48">
+        <header class="w-11/12 justify-center items-center mb-5 flex flex-col">
+          <h1 class="text-3xl text-center font-black leading-9">
+            Shop without leaving the
+            <span class="text-blue-700">Comforts</span> of your home
+          </h1>
+          <p class="mt-5 text-gray-900 text-center text-sm font-normal w-10/12">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua
+          </p>
+        </header>
+        <div class="flex justify-center items-center">
+            <button class="bg-blue-700 text-xl font-bold rounded text-white border border-indigo-700 py-2 px-4 hover:bg-blue-500">Shop Now</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Section -->
+    <section class="lg:px-20 md:px-6 md:py-12 py-8 px-4">
+        <div class="lg:flex items-center justify-between">
+            <div class="lg:w-1/2 mr-10">
+                <h1 class="text-4xl font-semibold leading-9 text-gray-800">Indoor Interiors</h1>
+                <p class="text-base leading-6 mt-4 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                <button type="button" class="mt-6 text-base font-semibold leading-none text-gray-800 flex items-center">View Catalogue</button>
+                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/feature-VI-svg1.svg" class="ml-2 mt-1">
+            </div>
+            <div class="mt-8">
+                <div class="w-full h-full bg-red-200">
+                    <img src="https://i.ibb.co/cbyDY74/pexels-max-vakhtbovych-6782351-1-1.png"/>
+                </div>
+                <div class="grid gap-6 mt-4 grid-cols-2">
+                    <img src="https://i.ibb.co/0Jv3FSy/pexels-max-vakhtbovych-6436799-1-1.png"/>
+                    <img src="https://i.ibb.co/4Jrp5TB/pexels-max-vakhtbovych-6782370-1.png"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- More features -->
+    
+    <div class="2xl:container 2xl:mx-auto">
+        <div class="lg:px-20 md:px-6 px-4 md:py-12 py-8 bg-gray-200">
+          <div>
+            <h1
+              class="text-3xl lg:text-4xl font-semibold text-gray-800 text-center"
+            >
+              Top Selling
+            </h1>
+          </div>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-8 md:mt-10"
+          >
+            <div class="bg-gray-50 dark:bg-gray-800 p-8">
+              <div class="">
+                <h2 class="text-xl text-gray-600 dark:text-white">
+                  Lounge Chair
+                </h2>
+                <p
+                  class="text-xl font-semibold text-gray-800 dark:text-white mt-2"
+                >
+                  $1200
+                </p>
+              </div>
+              <div class="flex justify-center items-center mt-8 md:mt-24">
+                <img
+                  class=""
+                  src="https://i.ibb.co/8403ZFZ/pexels-hormel-2762247-removebg-preview-2-1.png"
+                  alt="A chair with designed back"
+                  role="img"
+                />
+              </div>
+              <div class="flex justify-end items-center space-x-2 mt-16 md:mt-32">
+                <button
+                  aria-label="show in red color"
+                  class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+                >
+                  <div
+                    class="w-2.5 h-2.5 bg-red-600 border rounded-full border-gray-500"
+                  ></div>
+                </button>
+                <button
+                  aria-label="show in white color"
+                  class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+                >
+                  <div
+                    class="w-2.5 h-2.5 bg-white border rounded-full border-gray-500"
+                  ></div>
+                </button>
+                <button
+                  aria-label="show in black color"
+                  class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+                >
+                  <div
+                    class="w-2.5 h-2.5 bg-gray-900 border rounded-full border-gray-500"
+                  ></div>
+                </button>
+              </div>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-8">
+              <div class="">
+                <h2 class="text-xl text-gray-600 dark:text-white">
+                  Lounge Chair
+                </h2>
+                <p
+                  class="text-xl font-semibold text-gray-800 dark:text-white mt-2"
+                >
+                  $1200
+                </p>
+              </div>
+              <div class="flex justify-center items-center mt-8 md:mt-24">
+                <img
+                  class=""
+                  src="https://i.ibb.co/WBdnRqb/eugene-chystiakov-3ne-Swyntb-Q8-unsplash-1-removebg-preview-2-1.png"
+                  alt="A chair with wooden legs"
+                  role="img"
+                />
+              </div>
+              <div class="flex justify-end items-center space-x-2 mt-8 md:mt-32">
+                <button
+                  aria-label="show in white color"
+                  class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+                >
+                  <div
+                    class="w-2.5 h-2.5 bg-white border rounded-full border-gray-500"
+                  ></div>
+                </button>
+                <button
+                  aria-label="show in black color"
+                  class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+                >
+                  <div
+                    class="w-2.5 h-2.5 bg-gray-900 border rounded-full border-gray-500"
+                  ></div>
+                </button>
+              </div>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-8">
+              <div class="">
+                <h2 class="text-xl text-gray-600 dark:text-white">
+                  Lounge Chair
+                </h2>
+                <p
+                  class="text-xl font-semibold text-gray-800 dark:text-white mt-2"
+                >
+                  $1200
+                </p>
+              </div>
+              <div class="flex justify-center items-center mt-8 md:mt-24">
+                <img
+                  class=""
+                  src="https://i.ibb.co/R2fbCvj/kari-shea-It-Mgg-D0-Egu-Y-unsplash-removebg-preview-2-1.png"
+                  alt="A sofa chair with wooden legs"
+                  role="img"
+                />
+              </div>
+              <div class="flex justify-end items-center space-x-2 mt-16 md:mt-32">
+                <button
+                  aria-label="show in green color"
+                  class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+                >
+                  <div
+                    class="w-2.5 h-2.5 bg-green-700 border rounded-full border-gray-500"
+                  ></div>
+                </button>
+                <button
+                  aria-label="show in brown color"
+                  class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+                >
+                  <div
+                    class="w-2.5 h-2.5 bg-yellow-800 border rounded-full border-gray-500"
+                  ></div>
+                </button>
+              </div>
+            </div>
+          </div>
+  
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 lg:gap-8 mt-4 md:mt-6 lg:mt-8"
+          >
+            <div class="bg-gray-50 dark:bg-gray-800 p-8">
+              <div>
+                <h2 class="text-xl leading-tight text-gray-600 dark:text-white">
+                  Sectional Sofa
+                </h2>
+                <p
+                  class="text-xl font-semibold text-gray-800 dark:text-white mt-2"
+                >
+                  $78900
+                </p>
+              </div>
+              <div class="flex justify-center items-center mt-28 md:mt-3">
+                <img
+                  src="https://i.ibb.co/CPdBFwZ/pexels-pixabay-276583-removebg-preview-1-1.png"
+                  alt="A large sectional sofa"
+                  role="img"
+                />
+              </div>
+              <div class="flex justify-end items-center space-x-2 mt-36 md:mt-12">
+                <button
+                  aria-label="show in yellow color"
+                  class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+                >
+                  <div
+                    class="w-2.5 h-2.5 bg-yellow-500 border rounded-full border-gray-500"
+                  ></div>
+                </button>
+                <button
+                  aria-label="show in light gray color"
+                  class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+                >
+                  <div
+                    class="w-2.5 h-2.5 bg-gray-400 border rounded-full border-gray-500"
+                  ></div>
+                </button>
+              </div>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-8">
+              <div>
+                <h2 class="text-xl leading-tight text-gray-600 dark:text-white">
+                  Two Seater Sofa
+                </h2>
+                <p
+                  class="text-xl font-semibold text-gray-800 dark:text-white mt-2"
+                >
+                  $2900
+                </p>
+              </div>
+              <div class="flex justify-center items-center mt-28 md:mt-1">
+                <img
+                  src="https://i.ibb.co/238nZzf/pexels-andrea-piacquadio-3757055-removebg-preview-1-1.png"
+                  alt="A beautiful two seater sofa"
+                  role="img"
+                />
+              </div>
+              <div class="flex justify-end items-center space-x-2 mt-36 md:mt-12">
+                <button
+                  aria-label="show in black color"
+                  class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+                >
+                  <div
+                    class="w-2.5 h-2.5 bg-gray-900 border rounded-full border-gray-500"
+                  ></div>
+                </button>
+                <button
+                  aria-label="show in green color"
+                  class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded"
+                >
+                  <div
+                    class="w-2.5 h-2.5 bg-green-700 border rounded-full border-gray-500"
+                  ></div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <div class="bg-white">
+        <div class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
+          <div>
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Technical Specifications</h2>
+            <p class="mt-4 text-gray-500">The walnut wood card tray is precision milled to perfectly fit a stack of Focus cards. The powder coated steel divider separates active cards from new ones, or can be used to archive important task lists.</p>
+      
+            <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
+              <div class="border-t border-gray-200 pt-4">
+                <dt class="font-medium text-gray-900">Origin</dt>
+                <dd class="mt-2 text-sm text-gray-500">Designed by Good Goods, Inc.</dd>
+              </div>
+              <div class="border-t border-gray-200 pt-4">
+                <dt class="font-medium text-gray-900">Material</dt>
+                <dd class="mt-2 text-sm text-gray-500">Solid walnut base with rare earth magnets and powder coated steel card cover</dd>
+              </div>
+              <div class="border-t border-gray-200 pt-4">
+                <dt class="font-medium text-gray-900">Dimensions</dt>
+                <dd class="mt-2 text-sm text-gray-500">6.25&quot; x 3.55&quot; x 1.15&quot;</dd>
+              </div>
+              <div class="border-t border-gray-200 pt-4">
+                <dt class="font-medium text-gray-900">Finish</dt>
+                <dd class="mt-2 text-sm text-gray-500">Hand sanded and finished with natural oil</dd>
+              </div>
+              <div class="border-t border-gray-200 pt-4">
+                <dt class="font-medium text-gray-900">Includes</dt>
+                <dd class="mt-2 text-sm text-gray-500">Wood card tray and 3 refill packs</dd>
+              </div>
+              <div class="border-t border-gray-200 pt-4">
+                <dt class="font-medium text-gray-900">Considerations</dt>
+                <dd class="mt-2 text-sm text-gray-500">Made from natural materials. Grain and color vary with each item.</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
+            <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-01.jpg" alt="Walnut card tray with white powder coated steel divider and 3 punchout holes." class="rounded-lg bg-gray-100">
+            <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-02.jpg" alt="Top down view of walnut card tray with embedded magnets and card groove." class="rounded-lg bg-gray-100">
+            <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-03.jpg" alt="Side of walnut card tray with card groove and recessed card area." class="rounded-lg bg-gray-100">
+            <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-04.jpg" alt="Walnut card tray filled with cards and card angled in dedicated groove." class="rounded-lg bg-gray-100">
+          </div>
+        </div>
+      </div>
+      
+    
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-200 px-4 py-12">
+        <div class="flex flex-col items-center justify-center">
+            <h1 class="items-center ml-2 font-semibold text-xl">FURNATURE</h1>
+        </div>
+        <div class="flex items-center justify-center flex-wrap mt-8 gap-10">
+            <a href="javascript:void(0)" class="text-base cursor-pointer leading-4 text-gray-800 hover:text-gray-500 font-semibold">Home</a>
+            <a href="javascript:void(0)" class="text-base cursor-pointer leading-4 text-gray-800 hover:text-gray-500 font-semibold">Catalog</a>
+            <a href="javascript:void(0)" class="text-base cursor-pointer leading-4 text-gray-800 hover:text-gray-500 font-semibold">Top Sell</a>
+            <a href="javascript:void(0)" class="text-base cursor-pointer leading-4 text-gray-800 hover:text-gray-500 font-semibold">Specifications</a>
+            <a href="javascript:void(0)" class="text-base cursor-pointer leading-4 text-gray-800 hover:text-gray-500 font-semibold">Contacts</a>
+        </div>
+        <div class="flex items-center justify-center gap-x-8 mt-8">
+            <button class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 focus:outline-none rounded-full">
+                <svg aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+                data-icon="google"
+                class="w-3 h-full mx-auto text-gray-800"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 488 512"
+                >
+                <path
+                  fill="currentColor"
+                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
+                ></path>
+              </svg>
+            </button>
+            <button class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 focus:outline-none rounded-full">
+                <svg aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+                data-icon="twitter"
+                class="w-3 h-full mx-auto"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+                ></path>
+              </svg>
+            </button>
+            <button class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 focus:outline-none rounded-full">
+                <svg aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+              data-icon="instagram"
+                class="w-3 h-full mx-auto"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                ></path>
+              </svg>
+            </button>
+            <button class="focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 focus:outline-none rounded-full">
+                <svg aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+              data-icon="facebook-f"
+              class="w-2 h-full mx-auto"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 320 512"
+            >
+              <path
+                fill="currentColor"
+                d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+              ></path>
+              </svg>
+            </button>
+        </div>
+        <div class="flex items-center justify-center mt-6">
+            <p class="text-base leading-4 text-gray-800">2023 <span class="font-semibold">Furnature</span></p>
+            <div class="border-l border-gray-800 pl-2 ml-2">
+                <p class="text-base leading-4 text-gray-800"> Inc. All right reserved</p>
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- Modal Login  -->
+    <div id="modalLogin" class="hidden relative z-[100]">
+        <!-- Overlay -->
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <p id="closeLogin" class="text-4xl text-gray-500 cursor-pointer" onclick="closeLogin()">&times;</p>
+                        <div class="flex flex-col items-center justify-center">
+                            <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg1.svg" alt="logo"/>
+                            
+                            <div class="bg-white shadow rounded w-full">
+                                <p tabindex="0" class="text-2xl font-extrabold leading-6 text-gray-800">Login to your account</p>
+                                <p tabindex="0" class="text-sm font-medium leading-none text-gray-500 mt-4">Dont have an account?
+                                <a href="javascript:void(0)" class="hover:text-gray-500 text-sm font-medium leading-none text-gray-800 cursor-pointer">Sign up here</a></p>
+                                <button class="px-4 border rounded-lg border-gray-700 flex items-center justify-center w-full mt-5">
+                                    <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg2.svg" alt=""/>
+                                    <p class="text-base font-medium ml-4">Continue with Google</p>
+                                </button>
+                                <button class="px-4 border rounded-lg border-gray-700 flex items-center justify-center w-full mt-2">
+                                    <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg3.svg" alt=""/>
+                                    <p class="text-base font-medium ml-4">Continue with Github</p>
+                                </button>
+                                <button class="px-4 border rounded-lg border-gray-700 flex items-center justify-center w-full mt-2">
+                                    <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg4.svg" alt=""/>
+                                    <p class="text-base font-medium ml-4">Continue with Twitter</p>
+                                </button>
+                                <div class="w-full flex items-center justify-center py-5">
+                                    <hr class="w-full bg-gray-400">
+                                    <p class="text-base font-medium leading-4 px-2.5 text-gray-400">OR</p>
+                                    <hr class="w-full bg-gray-400">
+                                </div>
+                                <div>
+                                    <input type="email" placeholder="Email" class="w-full bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 pl-3 mt-2" />
+                                </div>
+                                <div class="mt-6 w-full">
+                                    <div class="relative flex items-center justify-center">
+                                        <input placeholder="password" id="pass" type="password" class="bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-1"/>
+                                    </div>
+                                </div>
+                                <div class="my-8">
+                                    <button type="button" class="text-white leading-none bg-indigo-700 border rounded py-4 w-full hover:bg-indigo-500">Login</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 bg-gray-50 px-4 py-3 sm:px-6">
+                        <p class="inline-flex justify-start px-4 py-2 text-base font-medium text-gray-500 ">Don't have an account yet?</p>
+                        <button type="button" class="inline-flex w-full justify-center items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cart -->
+    <div id="modalCart" class="hidden relative z-[100]">
+        <!-- Overlay -->
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+
+                <div class="w-full h-full bg-black bg-opacity-90 top-0 overflow-y-auto overflow-x-hidden fixed sticky-0" id="check-div">
+
+                    <div class="w-full absolute z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700" id="check-outer">
+                        <div class="flex items-end justify-end lg:flex-row  flex-col" id="cart">
+                            <div class="px-4 py-4 bg-white overflow-x-hidden overflow-y-hidden h-auto " id="scroll">
+                                <div class="flex items-center text-gray-500 cursor-pointer" onclick="checkoutBack()">
+                                    <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/shopping-cart-1-svg1.svg
+                                    " />
+                                    <p class="text-sm pl-2 leading-none">Back</p>
+                                </div>
+
+                                <div class="items-stretch py-8 border-t border-gray-50 grid sm:grid-cols-2 gap-8">
+
+                                    <div class="w-full">
+                                        <img src="https://i.ibb.co/yVSpYqx/Rectangle-6.png" class="h-full object-center object-cover" />
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <p class="text-xs leading-3 text-gray-800 pt-4">123ABC</p>
+                                        <div class="flex items-center justify-between w-full pt-1">
+                                            <p class="text-base font-black leading-none text-gray-800">AB Sneaker</p>
+                                            <select class="py-2 px-1 border border-gray-200 mr-0">
+                                                <option value="">1</option>
+                                                <option value="">2</option>
+                                                <option value="">3</option>
+                                                <option value="">4</option>
+                                            </select>
+                                        </div>
+                                        <p class="text-xs leading-3 text-gray-600 pt-2">Height: 10inches</p>
+                                        <p class="text-xs leading-3 text-gray-600 pt-2">Color: white</p>
+                                        <p class="text-xs leading-3 text-gray-600 pt-2">Composition: 100% calf leather</p>    
+                                        <div class="flex items-center justify-between pt-5">
+                                            <div class="flex items-center">
+                                                <p class="text-xs leading-3 underline text-gray-800 cursor-pointer">Add to favorites</p>
+                                                <p class="text-xs leading-3 underline text-red-800 pl-5 cursor-pointer">Remove</p>
+                                            </div>
+                                            <p class="text-base leading-none font-black text-gray-800">$500</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="w-full">
+                                        <img src="https://i.ibb.co/yVSpYqx/Rectangle-6.png" class="h-full object-center object-cover" />
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <p class="text-xs leading-3 text-gray-800 pt-4">123ABC</p>
+                                        <div class="flex items-center justify-between w-full pt-1">
+                                            <p class="text-base font-black leading-none text-gray-800">AB Sneaker</p>
+                                            <select class="py-2 px-1 border border-gray-200 mr-0">
+                                                <option value="">1</option>
+                                                <option value="">2</option>
+                                                <option value="">3</option>
+                                                <option value="">4</option>
+                                            </select>
+                                        </div>
+                                        <p class="text-xs leading-3 text-gray-600 pt-2">Height: 10inches</p>
+                                        <p class="text-xs leading-3 text-gray-600 pt-2">Color: white</p>
+                                        <p class="text-xs leading-3 text-gray-600 pt-2">Composition: 100% calf leather</p>
+                                        <div class="flex items-center justify-between pt-5">
+                                            <div class="flex items-center">
+                                                <p class="text-xs leading-3 underline text-gray-800 cursor-pointer">Add to favorites</p>
+                                                <p class="text-xs leading-3 underline text-red-800 pl-5 cursor-pointer">Remove</p>
+                                            </div>
+                                            <p class="text-base leading-none font-black text-gray-800">$500</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-full bg-gray-100 h-full">
+                                    <div class="text-3xl font-black leading-9 text-gray-800">Summary</div>
+                                    <div class="flex items-center justify-between pt-16">
+                                        <p class="text-base font-black leading-none text-gray-800">Subtotal</p>
+                                        <p class="text-base font-black leading-none text-gray-800">$1000</p>
+                                    </div>
+                                    <div class="flex items-center justify-between pt-5">
+                                        <p class="text-base font-black leading-none text-gray-800">Shipping</p>
+                                        <p class="text-base font-black leading-none text-gray-800">$20</p>
+                                    </div>
+                                    <div class="flex items-center justify-between pt-5">
+                                        <p class="text-base font-black leading-none text-gray-800">Tax</p>
+                                        <p class="text-base font-black leading-none text-gray-800">$30</p>
+                                    </div> 
+                                </div>
+
+                                <div class="flex items-center pb-6 justify-between pt-20">
+                                    <p class="text-2xl leading-normal text-right text-gray-800 font-bold">Total</p>
+                                    <p class="text-2xl font-bold leading-normal text-right text-gray-800">$1050</p>
+                                </div>
+                                <button type="button" class="text-base leading-none w-full py-5 bg-indigo-700 border border-gray-800 text-white hover:bg-indigo-500 font-semibold">Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </body>
+</html>
